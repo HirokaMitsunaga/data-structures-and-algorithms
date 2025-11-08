@@ -1,5 +1,5 @@
-// main.js
-const fs = require("fs");
+// main.ts
+import * as fs from "fs";
 const input = fs.readFileSync(0, "utf8").trim().split("\n");
 
 const main = () => {
