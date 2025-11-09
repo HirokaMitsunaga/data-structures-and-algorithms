@@ -12,7 +12,8 @@ const main = () => {
   let count = 0; //何段なのかのカウントよう
   let num = 1000000; //値保持用、初期値で限りなく大きい値にすることのより一つ目の値が必ず入る
 
-  diameters.map((diameter) => {
+  //mapを使うと新しい配列を作ることになり、メモリの使用率２倍になるためforEachへ変更する
+  diameters.forEach((diameter) => {
     if (num > diameter) {
       num = diameter;
       count++;
