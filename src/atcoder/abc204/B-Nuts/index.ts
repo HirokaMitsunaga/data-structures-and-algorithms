@@ -1,14 +1,15 @@
-// main.ts
 import * as fs from "fs";
 const input = fs.readFileSync(0, "utf8").trim().split("\n");
 
 const main = () => {
-  const [N] = input[0].split(" ").map(Number);
-  const a = input[1].split(" ").map(Number);
-
-  const count = a.reduce((sum, val) => {
-    return sum + (val > 10 ? val - 10 : 0);
-  }, 0);
+  const A = input[1].split(" ").map(Number);
+  let count = 0;
+  A.forEach((a) => {
+    if (a > 10) {
+      count += a - 10;
+    }
+  });
+  console.log(count);
 };
 
 main();
