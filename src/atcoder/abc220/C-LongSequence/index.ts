@@ -1,29 +1,39 @@
 import * as fs from "fs";
+
 const input = fs.readFileSync(0, "utf8").trim().split("\n");
 
 const main = () => {
-  const n = Number(input[0]);
-  const a = input[1].split(" ").map(Number);
-  const x = Number(input[2]);
+  const A = input[1].split(" ").map(BigInt);
+  const X = BigInt(input[2]);
 
-  // 数列Aの合計を計算
-  const sum = a.reduce((acc, val) => acc + val, 0);
+  let kou = BigInt(0);
 
-  // 数列Aを何回完全に繰り返せるか
-  const fullCycles = Math.floor(x / sum);
+  let aSum = BigInt(0);
+  for (const value of A) {
+    kou++;
+    if (X < aSum) {
+      console.log(kou.toString());
+      return;
+    }
+    aSum += value;
+  }
+  // for of　の部分いらなくて以下だけでいい。
+  // const sum = a.reduce((acc, val) => acc + val, BigInt(0));
 
-  // その時点での合計と項数
-  let count = fullCycles * sum;
-  let k = fullCycles * n;
+  const shou = X / aSum;
 
-  // 残りを1つずつ足していく
-  for (let i = 0; i < a.length; i++) {
-    count += a[i];
-    k++;
-    if (count > x) {
-      console.log(k);
+  let count = shou * aSum;
+  kou = shou * BigInt(A.length);
+
+  for (let index = 0; index < A.length; index++) {
+    count += A[index];
+    kou++;
+
+    if (X < count) {
+      console.log(kou.toString());
       return;
     }
   }
 };
+
 main();
