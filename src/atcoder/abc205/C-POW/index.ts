@@ -25,3 +25,16 @@ const main = () => {
   }
 };
 main();
+
+/* 別解
+const main = () => {
+  const [A, B, C] = input[0].split(" ").map(Number);
+  if (C % 2 !== 0) {
+    console.log(A > B ? ">" : A < B ? "<" : "=");
+  } else {
+    const absA = Math.abs(A);
+    const absB = Math.abs(B);
+    console.log(absA > absB ? ">" : absA < absB ? "<" : "=");
+  }
+};
+*/
