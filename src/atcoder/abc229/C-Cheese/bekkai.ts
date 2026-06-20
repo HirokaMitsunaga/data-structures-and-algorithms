@@ -13,17 +13,16 @@ const main = () => {
   cheeses.sort((a, b) => b.delicious - a.delicious);
 
   let totalWeight = 0;
-  let totalDelicious = 0n;
+  let totalDelicious = BigInt(0);
 
   for (const cheese of cheeses) {
-    const remaining = W - totalWeight;
-
-    if (remaining <= 0) break;
-
-    const take = Math.min(remaining, cheese.weight);
-
-    totalDelicious += BigInt(take) * BigInt(cheese.delicious);
-    totalWeight += take;
+    if (totalWeight + cheese.weight <= W) {
+      totalDelicious += BigInt(cheese.weight) * BigInt(cheese.delicious);
+      totalWeight += cheese.weight;
+    } else {
+      totalDelicious += BigInt(W - totalWeight) * BigInt(cheese.delicious);
+      break;
+    }
   }
 
   console.log(totalDelicious.toString());
