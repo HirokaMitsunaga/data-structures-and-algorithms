@@ -24,5 +24,5 @@ const dfs = (current: string) => {
 
 dfs("");
 
-const list = [...set].sort();
+const list = Array.from(set).sort();
 console.log(list[K - 1]);
